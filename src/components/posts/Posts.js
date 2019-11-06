@@ -11,14 +11,10 @@ class Posts extends Component {
 
 
     componentDidMount() {
+        console.log("test", this.props);
         this.props.getAllPosts();
     }
 
-    // const ovverride = css`
-    //   display: block;
-    //   margin: 0 auto;
-    //   border-color: red;
-    // `;
 
     render() {
         console.log("this.props.POSTS.fetching", this.props.posts.fetching);
@@ -33,7 +29,12 @@ class Posts extends Component {
                     />
                 </div>
                 <h1>Posts</h1>
-                {this.props.posts.error.response ? "Error occured" : "Success"}
+                {this.props.posts.posts.map(post => (
+                    <div key={post.id}>
+                        <h3>{post.id}</h3>
+                        <p>{post.title}</p>
+                    </div>))}
+                {/*{this.props.posts.error.response ? "Error occured" : "Success"}*/}
             </div>
         );
     }
